@@ -1,4 +1,7 @@
 # terratest_azure_examples
-Terratest examples based on Azure Modules
-Available examples:
-1. Compute
+
+## Available examples
+
+### Compute
+
+Using terraform azure module "compute" to deploy one or more virtual machines on azure.
