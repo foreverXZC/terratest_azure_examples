@@ -81,7 +81,7 @@ func testSSHToPublicHost(t *testing.T, terraformOptions *terraform.Options, addr
 
 		session, err2 := connection.NewSession()
 		if err2 != nil {
-			return "", err
+			return "", err2
 		}
 
 		modes := ssh.TerminalModes{
@@ -93,7 +93,7 @@ func testSSHToPublicHost(t *testing.T, terraformOptions *terraform.Options, addr
 		err3 := session.RequestPty("xterm", 80, 40, modes)
 		if err3 != nil {
 			session.Close()
-			return "", err
+			return "", err3
 		}
 
 		text := "Hello, World!"
@@ -101,9 +101,8 @@ func testSSHToPublicHost(t *testing.T, terraformOptions *terraform.Options, addr
 
 		err4 := session.Run(command)
 		if err4 != nil {
-			return "", err
+			return "", err4
 		}
-
 		fmt.Println(text)
 
 		return "", nil
