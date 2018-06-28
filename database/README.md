@@ -12,10 +12,10 @@ This folder only includes one file. First, the go test file uses terraform datab
 
 ## Reference
 
-[Terraform Azure Database Module](https://registry.terraform.io/modules/Azure/database/azurerm)
+[Terraform Azure Database Module](https://registry.terraform.io/modules/Azure/database/azurerm/)
 
-[Go Database Tutorial](http://go-database-sql.org)
+[Go Database Tutorial](http://go-database-sql.org/)
 
-[SQL Server Connection in Golang](https://mathaywardhill.com/2017/04/27/get-started-with-golang-and-sql-server-in-visual-studio-code)
+[SQL Server Connection in Golang](https://mathaywardhill.com/2017/04/27/get-started-with-golang-and-sql-server-in-visual-studio-code/)
 
-[Azure SQL Database Document](https://docs.microsoft.com/en-us/azure/sql-database)
+[Azure SQL Database Document](https://docs.microsoft.com/en-us/azure/sql-database/)
