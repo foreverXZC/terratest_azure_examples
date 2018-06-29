@@ -8,7 +8,7 @@ Just as compute example does, these terraform files enable users to deploy one l
 
 ## SSH_HTTP
 
-This folder includes two files. First, the go test file uses terraform compute module to deploy one linux virtual machine on azure. After that, it tries to ssh to it and execute shell commands to install nginx. Then the program opens port 80 and sends HTTP request to the server. Next, everything will be cleaned up after validation. Be aware that some part of code is hardcoded corresponding to terraform file, and of course you can write your own test code. Finally, in order to make this program work, you should provide ssh private key in id_rsa.
+This folder includes two files. First, the go test file uses terraform compute module to deploy one linux virtual machine on azure. After that, it tries to ssh to it and execute shell commands to install nginx. Then the program opens port 80 and sends http request to the server. Next, everything will be cleaned up after validation. Be aware that some part of code is hardcoded corresponding to terraform file, and of course you can write your own test code. Finally, in order to make this program work, you should provide ssh private key in id_rsa.
 
 ## Reference
 
