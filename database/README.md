@@ -1,6 +1,6 @@
 # Database Example
 
-Using terraform azure module "database" to deploy a Microsoft SQL Dababase on azure.
+Use terraform azure module "database" to deploy a Microsoft SQL Dababase on azure. THhn use terratest to connect to the database.
 
 ## Database
 
