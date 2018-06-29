@@ -6,11 +6,15 @@ The following examples use terraform to deploy things on azure and use terratest
 
 ### Compute
 
-Using terraform azure module "compute" to deploy one or more virtual machines on azure.
+Use terraform azure module "compute" to deploy one or more virtual machines on azure. Then use terratest to ssh to virtual machines.
+
+### Composite
+
+Use terraform azure module "compute" to deploy one virtual machine on azure. Then use terratest to ssh to it and also send http request.
 
 ### Database
 
-Using terraform azure module "database" to deploy a Microsoft SQL Dababase on azure.
+Use terraform azure module "database" to deploy a Microsoft SQL Dababase on azure. THen use terratest to connect to the database.
 
 ## Reference
 
