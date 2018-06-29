@@ -1,4 +1,4 @@
-# terratest_azure_examples
+# Terratest Azure Examples
 
 The following examples use terraform to deploy things on azure and use terratest to check whether the infrastructure works properly. For more information, please read reference and see details in each example. Any issues and pull request encouraged.
 
@@ -14,7 +14,7 @@ Use terraform azure module "compute" to deploy one virtual machine on azure. The
 
 ### Database
 
-Use terraform azure module "database" to deploy a Microsoft SQL Dababase on azure. THen use terratest to connect to the database.
+Use terraform azure module "database" to deploy a Microsoft SQL Dababase on azure. THhn use terratest to connect to the database.
 
 ## Reference
 
