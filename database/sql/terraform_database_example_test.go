@@ -16,7 +16,7 @@ func TestTerraformHttpExample(t *testing.T) {
 	t.Parallel()
 
 	terraformOptions := &terraform.Options{
-		TerraformDir: "../database",
+		TerraformDir: "../../clouddrive/database",
 
 		Vars: map[string]interface{}{},
 	}
@@ -36,8 +36,6 @@ func TestTerraformHttpExample(t *testing.T) {
 	description := fmt.Sprintf("Executing commands on database %s", server)
 
 	retry.DoWithRetry(t, description, maxRetries, timeBetweenRetries, func() (string, error) {
-		fmt.Println(description)
-
 		config := fmt.Sprintf("server = %s; port = %s; user id = %s; password = %s; database = %s", server, port, user, password, database)
 		db, err := sql.Open("mssql", config)
 		if err != nil {
@@ -61,6 +59,7 @@ func TestTerraformHttpExample(t *testing.T) {
 		if err2 != nil {
 			return "", err2
 		}
+
 		var id int
 		var name string
 		for rows.Next() {
@@ -77,6 +76,7 @@ func TestTerraformHttpExample(t *testing.T) {
 		if err4 != nil {
 			return "", err4
 		}
+		fmt.Println("Executed SQL commands correctly")
 
 		defer rows.Close()
 		defer db.Close()
