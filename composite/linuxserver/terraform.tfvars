@@ -1,0 +1,6 @@
+location = "westus2"
+ssh_key = "C:/Users/t-zhxia/.ssh/id_rsa.pub"
+resource_group_name = "linuxResourceGroup"
+vm_os_simple = "UbuntuServer"
+admin_username = "azureuser"
+admin_password = "P@ssw0rd12345!"
