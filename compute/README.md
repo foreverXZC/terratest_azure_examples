@@ -1,6 +1,6 @@
 # Compute Example
 
-Using terraform azure module "compute" to deploy one or more virtual machines on azure.
+Use terraform azure module "compute" to deploy one virtual machine on azure. Then use terratest to ssh to it and also send http request.
 
 ## Compute
 
@@ -16,7 +16,9 @@ This folder includes two files. First, the go test file uses terraform compute m
 
 [Terratest SSH Source Code](https://github.com/gruntwork-io/terratest/blob/master/test/terraform_ssh_example_test.go)
 
-[SSH Client Connection in Golang](http://blog.ralch.com/tutorial/golang-ssh-connection/)
+[SSH Golang Document](https://godoc.org/golang.org/x/crypto/ssh)
+
+[SSH Client Connection Example in Golang](http://blog.ralch.com/tutorial/golang-ssh-connection/)
 
 [Azure Linux Virtual Machine Document](https://docs.microsoft.com/en-us/azure/virtual-machines/linux/)
 

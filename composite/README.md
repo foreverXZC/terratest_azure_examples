@@ -16,9 +16,13 @@ This folder includes two files. First, the go test file uses terraform compute m
 
 [Terratest SSH Source Code](https://github.com/gruntwork-io/terratest/blob/master/test/terraform_ssh_example_test.go)
 
-[SSH Client Connection in Golang](http://blog.ralch.com/tutorial/golang-ssh-connection/)
+[SSH Golang Document](https://godoc.org/golang.org/x/crypto/ssh)
 
-[HTTP Request in Golang](https://gist.github.com/ijt/950790/fca88967337b9371bb6f7155f3304b3ccbf3946f)
+[SSH Client Connection Example in Golang](http://blog.ralch.com/tutorial/golang-ssh-connection/)
+
+[HTTP Golang Document](https://golang.org/pkg/net/http/)
+
+[HTTP Request Example in Golang](https://gist.github.com/ijt/950790/fca88967337b9371bb6f7155f3304b3ccbf3946f)
 
 [Shell Commands in Golang](https://nathanleclaire.com/blog/2014/12/29/shelled-out-commands-in-golang/)
 
