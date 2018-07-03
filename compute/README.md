@@ -8,7 +8,39 @@ These terraform files enable users to deploy one or more virtual machines on azu
 
 ## SSH
 
-This folder includes three files. Most importantly, 'terraform_ssh_example_test.go' is the main go test file which represents the whole process of testing the module. First, it uses terraform compute module to deploy virtual machines on azure. After that, it calls functions from other two files, so as to ssh to these virtual machines and check whether they are running properly. Next, everything will be cleaned up after validation. Of course you can write your own test code. Finally, in order to make this program work, you should provide your own ssh private key.
+This folder includes three files. Most importantly, [ssh/terraform_ssh_example_test.go](/ssh/terraform_ssh_example_test.go) is the main go test file which represents the whole process of testing the module. First, it uses terraform compute module to deploy virtual machines on azure. After that, it calls functions from other two files, so as to ssh to these virtual machines and check whether they are running properly. Next, everything will be cleaned up after validation. Of course you can write your own test code. Finally, in order to make this program work, you should provide your own ssh private key.
+
+## Running this module manually
+
+1. Sign up for [Azure](portal.azure.com/).
+
+1. Configure your Azure credentials. For instance, you may use [Azure CLI](https://docs.microsoft.com/en-us/cli/azure/install-azure-cli) and execute `az login`.
+
+1. Install [Terraform](https://www.terraform.io/) and make sure it's on your `PATH`.
+
+1. Fill in blank of your ssh public key in [compute/teraform.tfvars](/compute/teraform.tfvars) and make sure your configuration is correct.
+
+1. Direct to folder [compute](/compute) and run `terraform init`.
+
+1. Run `terraform apply`.
+
+1. When you're done, run `terraform destroy`.
+
+## Running automated tests against this module
+
+1. Sign up for [Azure](portal.azure.com/).
+
+1. Configure your Azure credentials. For instance, you may use [Azure CLI](https://docs.microsoft.com/en-us/cli/azure/install-azure-cli) and execute `az login`.
+
+1. Install [Terraform](https://www.terraform.io/) and make sure it's on your `PATH`.
+
+1. Install [Golang](https://golang.org/) and make sure this code is checked out into your `GOPATH`.
+
+1. Fill in blank of your ssh public key in [compute/teraform.tfvars](/compute/teraform.tfvars) and make sure your configuration is correct.
+
+1. Direct to folder [ssh](/ssh) and make sure all packages are installed, such as executing `github.com/gruntwork-io/terratest/modules/terraform`, etc.
+
+1. Run `go test -args username path/to/your/private/key`. For example, `go test -args azureuser id_rsa`.
 
 ## Reference
 
