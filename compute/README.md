@@ -12,15 +12,15 @@ This folder includes three files. Most importantly, [ssh/terraform_ssh_example_t
 
 ## Running this module manually
 
-1. Sign up for [Azure](portal.azure.com/).
+1. Sign up for [Azure](https://portal.azure.com/).
 
 1. Configure your Azure credentials. For instance, you may use [Azure CLI](https://docs.microsoft.com/en-us/cli/azure/install-azure-cli) and execute `az login`.
 
 1. Install [Terraform](https://www.terraform.io/) and make sure it's on your `PATH`.
 
-1. Fill in blank of your ssh public key in [compute/teraform.tfvars](/compute/teraform.tfvars) and make sure your configuration is correct.
+1. Fill in blank of your ssh public key in [compute/terraform.tfvars](/compute/compute/terraform.tfvars) and make sure your configuration is correct.
 
-1. Direct to folder [compute](/compute) and run `terraform init`.
+1. Direct to folder [compute](/compute/compute) and run `terraform init`.
 
 1. Run `terraform apply`.
 
@@ -28,7 +28,7 @@ This folder includes three files. Most importantly, [ssh/terraform_ssh_example_t
 
 ## Running automated tests against this module
 
-1. Sign up for [Azure](portal.azure.com/).
+1. Sign up for [Azure](https://portal.azure.com/).
 
 1. Configure your Azure credentials. For instance, you may use [Azure CLI](https://docs.microsoft.com/en-us/cli/azure/install-azure-cli) and execute `az login`.
 
@@ -36,9 +36,9 @@ This folder includes three files. Most importantly, [ssh/terraform_ssh_example_t
 
 1. Install [Golang](https://golang.org/) and make sure this code is checked out into your `GOPATH`.
 
-1. Fill in blank of your ssh public key in [compute/teraform.tfvars](/compute/teraform.tfvars) and make sure your configuration is correct.
+1. Fill in blank of your ssh public key in [compute/terraform.tfvars](/compute/compute/terraform.tfvars) and make sure your configuration is correct.
 
-1. Direct to folder [ssh](/ssh) and make sure all packages are installed, such as executing `github.com/gruntwork-io/terratest/modules/terraform`, etc.
+1. Direct to folder [ssh](/compute/ssh) and make sure all packages are installed, such as executing `github.com/gruntwork-io/terratest/modules/terraform`, etc.
 
 1. Run `go test -args username path/to/your/private/key`. For example, `go test -args azureuser id_rsa`.
 
