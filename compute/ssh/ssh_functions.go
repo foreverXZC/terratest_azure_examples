@@ -32,14 +32,14 @@ func createSSHTarget(t *testing.T, publicIP string) string {
 }
 
 func createSSHSession(t *testing.T, target string, sshConfig *ssh.ClientConfig) (*ssh.Session, error) {
-	connection, err := ssh.Dial("tcp", target, sshConfig)
-	if err != nil {
-		return nil, err
+	connection, err1 := ssh.Dial("tcp", target, sshConfig)
+	if err1 != nil {
+		return nil, err1
 	}
 
 	session, err2 := connection.NewSession()
 	if err2 != nil {
-		return nil, err
+		return nil, err2
 	}
 
 	modes := ssh.TerminalModes{
@@ -51,7 +51,7 @@ func createSSHSession(t *testing.T, target string, sshConfig *ssh.ClientConfig) 
 	err3 := session.RequestPty("xterm", 80, 40, modes)
 	if err3 != nil {
 		session.Close()
-		return nil, err
+		return nil, err3
 	}
 
 	return session, nil

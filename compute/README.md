@@ -1,10 +1,10 @@
 # Compute Example
 
-Use terraform azure module "compute" to deploy one virtual machine on azure. Then use terratest to ssh to it and also send http request.
+Use terraform azure module "compute" to deploy one or more virtual machines on azure. Then use terratest to ssh to virtual machines.
 
 ## Compute
 
-These terraform files enable users to deploy one or more virtual machines on azure, as well as virtual network. To use these files, you should provide path to ssh public key file in terraform.tfvars. You can just test the infrastructure code manually without terratest.
+These terraform files enable users to deploy one or more virtual machines on azure, as well as virtual network. To use these files, you should provide path to ssh public key file in [compute/terraform.tfvars](/compute/compute/terraform.tfvars). You can just test the infrastructure code manually without terratest.
 
 ## SSH
 
