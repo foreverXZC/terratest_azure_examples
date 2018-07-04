@@ -4,7 +4,7 @@ Use terraform azure module "compute" to deploy one virtual machine on azure. The
 
 ## Linuxserver
 
-Just as compute example does, these terraform files enable users to deploy one linux virtual machines on azure, as well as virtual network. To use these files, you should provide path to ssh public key file in [composite/terraform.tfvars](/composite/compute/terraform.tfvars). You can just test the infrastructure code manually without terratest.
+Just as compute example does, these terraform files enable users to deploy one linux virtual machines on azure, as well as virtual network. To use these files, you should provide path to ssh public key file in [linuxserver/terraform.tfvars](/composite/linuxserver/terraform.tfvars). You can just test the infrastructure code manually without terratest.
 
 ## SSH_HTTP
 
@@ -18,9 +18,9 @@ This folder includes four files. Essentially, [ssh_http/terraform_ssh_http_examp
 
 1. Install [Terraform](https://www.terraform.io/) and make sure it's on your `PATH`.
 
-1. Fill in blank of your ssh public key in [composite/terraform.tfvars](/composite/linuxserver/terraform.tfvars) and make sure your configuration is correct.
+1. Fill in blank of your ssh public key in [linuxserver/terraform.tfvars](/composite/linuxserver/terraform.tfvars) and make sure your configuration is correct.
 
-1. Direct to folder [composite](/composite/linuxserver) and run `terraform init`.
+1. Direct to folder [linuxserver](/composite/linuxserver) and run `terraform init`.
 
 1. Run `terraform apply`.
 
@@ -36,7 +36,7 @@ This folder includes four files. Essentially, [ssh_http/terraform_ssh_http_examp
 
 1. Install [Golang](https://golang.org/) and make sure this code is checked out into your `GOPATH`.
 
-1. Fill in blank of your ssh public key in [composite/terraform.tfvars](/composite/linuxserver/terraform.tfvars) and make sure your configuration is correct.
+1. Fill in blank of your ssh public key in [linuxserver/terraform.tfvars](/composite/linuxserver/terraform.tfvars) and make sure your configuration is correct.
 
 1. Direct to folder [ssh_http](/composite/ssh_http) and make sure all packages are installed, such as executing `go get github.com/gruntwork-io/terratest/modules/terraform`, etc.
 
