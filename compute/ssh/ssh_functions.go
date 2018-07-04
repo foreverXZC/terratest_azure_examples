@@ -9,6 +9,7 @@ import (
 	"golang.org/x/crypto/ssh"
 )
 
+// Create an SSH configuration using username(os.Args[1]) and path to private key(os.Args[2])
 func createSSHConfig(t *testing.T) *ssh.ClientConfig {
 	sshConfig := &ssh.ClientConfig{
 		User: os.Args[1],
@@ -23,6 +24,7 @@ func createSSHConfig(t *testing.T) *ssh.ClientConfig {
 	return sshConfig
 }
 
+// Create an SSH target using public ip address, i.e. 0.0.0.0:22
 func createSSHTarget(t *testing.T, publicIP string) string {
 	host := publicIP
 	port := "22"
@@ -31,6 +33,7 @@ func createSSHTarget(t *testing.T, publicIP string) string {
 	return target
 }
 
+// Create an SSH connection and then create an SSH session
 func createSSHSession(t *testing.T, target string, sshConfig *ssh.ClientConfig) (*ssh.Session, error) {
 	connection, err1 := ssh.Dial("tcp", target, sshConfig)
 	if err1 != nil {
@@ -57,11 +60,8 @@ func createSSHSession(t *testing.T, target string, sshConfig *ssh.ClientConfig) 
 	return session, nil
 }
 
+// Run SSH commands
 func runSSHCommands(t *testing.T, commands string, session *ssh.Session) error {
 	err := session.Run(commands)
-	if err != nil {
-		return err
-	}
-
-	return nil
+	return err
 }
