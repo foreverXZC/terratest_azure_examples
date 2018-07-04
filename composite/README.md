@@ -18,9 +18,9 @@ This folder includes four files. Essentially, [ssh_http/terraform_ssh_http_examp
 
 1. Install [Terraform](https://www.terraform.io/) and make sure it's on your `PATH`.
 
-1. Fill in blank of your ssh public key in [composite/terraform.tfvars](/composite/composite/terraform.tfvars) and make sure your configuration is correct.
+1. Fill in blank of your ssh public key in [composite/terraform.tfvars](/composite/linuxserver/terraform.tfvars) and make sure your configuration is correct.
 
-1. Direct to folder [composite](/composite/composite) and run `terraform init`.
+1. Direct to folder [composite](/composite/linuxserver) and run `terraform init`.
 
 1. Run `terraform apply`.
 
@@ -36,7 +36,7 @@ This folder includes four files. Essentially, [ssh_http/terraform_ssh_http_examp
 
 1. Install [Golang](https://golang.org/) and make sure this code is checked out into your `GOPATH`.
 
-1. Fill in blank of your ssh public key in [composite/terraform.tfvars](/composite/composite/terraform.tfvars) and make sure your configuration is correct.
+1. Fill in blank of your ssh public key in [composite/terraform.tfvars](/composite/linuxserver/terraform.tfvars) and make sure your configuration is correct.
 
 1. Direct to folder [ssh_http](/composite/ssh_http) and make sure all packages are installed, such as executing `go get github.com/gruntwork-io/terratest/modules/terraform`, etc.
 
