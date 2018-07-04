@@ -8,7 +8,7 @@ These terraform files enable users to deploy one or more virtual machines on azu
 
 ## SSH
 
-This folder includes three files. Most importantly, [ssh/terraform_ssh_example_test.go](/ssh/terraform_ssh_example_test.go) is the main go test file which represents the whole process of testing the module. First, it uses terraform compute module to deploy virtual machines on azure. After that, it calls functions from other two files, so as to ssh to these virtual machines and check whether they are running properly. Next, everything will be cleaned up after validation. Of course you can write your own test code. Finally, in order to make this program work, you should provide your own ssh private key.
+This folder includes three files. Most importantly, [ssh/terraform_ssh_example_test.go](/compute/ssh/terraform_ssh_example_test.go) is the main go test file which represents the whole process of testing the module. First, it uses terraform compute module to deploy virtual machines on azure. After that, it calls functions from other two files, so as to ssh to these virtual machines and check whether they are running properly. Next, everything will be cleaned up after validation. Of course you can write your own test code. Finally, in order to make this program work, you should provide your own ssh private key.
 
 ## Running this module manually
 

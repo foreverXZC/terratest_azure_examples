@@ -4,11 +4,43 @@ Use terraform azure module "compute" to deploy one virtual machine on azure. The
 
 ## Linuxserver
 
-Just as compute example does, these terraform files enable users to deploy one linux virtual machines on azure, as well as virtual network. To use these files, you should provide path to ssh public key file in terraform.tfvars. You can just test the infrastructure code manually without terratest.
+Just as compute example does, these terraform files enable users to deploy one linux virtual machines on azure, as well as virtual network. To use these files, you should provide path to ssh public key file in [composite/terraform.tfvars](/composite/compute/terraform.tfvars). You can just test the infrastructure code manually without terratest.
 
 ## SSH_HTTP
 
-This folder includes two files. First, the go test file uses terraform compute module to deploy one linux virtual machine on azure. After that, it tries to ssh to it and execute shell commands to install nginx. Then the program opens port 80 and sends http request to the server. Next, everything will be cleaned up after validation. Be aware that some part of code is hardcoded corresponding to terraform file, and of course you can write your own test code. Finally, in order to make this program work, you should provide ssh private key in id_rsa.
+This folder includes four files. Essentially, [ssh_http/terraform_ssh_http_example_test.go](/composite/ssh_http/terraform_ssh_http_example_test.go) is the main go test file which represents the whole process of testing the module. First, the go test file uses terraform compute module to deploy one linux virtual machine on azure. After that, it calls functions from other files, so as to ssh to the virtual machine and execute shell commands to install nginx. Then the program opens port 80 and sends http request to the server. Next, everything will be cleaned up after validation. Of course you can write your own test code. Finally, in order to make this program work, you should provide your own ssh private key.
+
+## Running this module manually
+
+1. Sign up for [Azure](https://portal.azure.com/).
+
+1. Configure your Azure credentials. For instance, you may use [Azure CLI](https://docs.microsoft.com/en-us/cli/azure/install-azure-cli) and execute `az login`.
+
+1. Install [Terraform](https://www.terraform.io/) and make sure it's on your `PATH`.
+
+1. Fill in blank of your ssh public key in [composite/terraform.tfvars](/composite/composite/terraform.tfvars) and make sure your configuration is correct.
+
+1. Direct to folder [composite](/composite/composite) and run `terraform init`.
+
+1. Run `terraform apply`.
+
+1. When you're done, run `terraform destroy`.
+
+## Running automated tests against this module
+
+1. Sign up for [Azure](https://portal.azure.com/).
+
+1. Configure your Azure credentials. For instance, you may use [Azure CLI](https://docs.microsoft.com/en-us/cli/azure/install-azure-cli) and execute `az login`.
+
+1. Install [Terraform](https://www.terraform.io/) and make sure it's on your `PATH`.
+
+1. Install [Golang](https://golang.org/) and make sure this code is checked out into your `GOPATH`.
+
+1. Fill in blank of your ssh public key in [composite/terraform.tfvars](/composite/composite/terraform.tfvars) and make sure your configuration is correct.
+
+1. Direct to folder [ssh_http](/composite/ssh_http) and make sure all packages are installed, such as executing `go get github.com/gruntwork-io/terratest/modules/terraform`, etc.
+
+1. Run `go test -args username path/to/your/private/key -timeout timelimit`. For example, `go test -args azureuser id_rsa -timeout 20m`.
 
 ## Reference
 
