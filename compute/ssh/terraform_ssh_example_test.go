@@ -94,7 +94,7 @@ func testSSHToPublicHost(t *testing.T, terraformOptions *terraform.Options, addr
 			return "", err
 		}
 
-		// Check whether the output is in expectation
+		// Check whether the output is correct
 		if strings.TrimSpace(actualText) != expectedText {
 			return "", fmt.Errorf("Expected SSH command to return '%s' but got '%s'", expectedText, actualText)
 		}
