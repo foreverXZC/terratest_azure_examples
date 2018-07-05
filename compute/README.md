@@ -40,7 +40,7 @@ This folder includes three files. Most importantly, [ssh/terraform_ssh_example_t
 
 1. Direct to folder [ssh](/compute/ssh) and make sure all packages are installed, such as executing `go get github.com/gruntwork-io/terratest/modules/terraform`, etc.
 
-1. Run `go test -args username path/to/your/private/key`. For example, `go test -args azureuser id_rsa`.
+1. Run `go test -args username path/to/your/private/key -timeout timelimit`. For example, `go test -args azureuser id_rsa -timeout 20m`.
 
 ## Reference
 
