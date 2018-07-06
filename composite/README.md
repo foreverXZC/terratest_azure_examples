@@ -8,7 +8,7 @@ Just as compute example does, these terraform files enable users to deploy one l
 
 ## SSH_HTTP
 
-This folder includes four files. Essentially, [ssh_http/terraform_ssh_http_example_test.go](/composite/ssh_http/terraform_ssh_http_example_test.go) is the main go test file which represents the whole process of testing the module. First, the go test file uses terraform compute module to deploy one linux virtual machine on azure. After that, it calls functions from other files, so as to ssh to the virtual machine and execute shell commands to install nginx. Then the program opens port 80 and sends http request to the server. Next, everything will be cleaned up after validation. Of course you can write your own test code. Finally, in order to make this program work, you should provide your own ssh private key.
+This folder includes four files. Two of them are deprecated, but we are still using HTTP functions. Essentially, [ssh_http/terraform_ssh_http_example_test.go](/composite/ssh_http/terraform_ssh_http_example_test.go) is the main go test file which represents the whole process of testing the module. First, the go test file uses terraform compute module to deploy one linux virtual machine on azure. After that, it calls functions from terratest ssh section, so as to ssh to the virtual machine and execute shell commands to install nginx. Then the program opens port 80 and sends http request to the server. Next, everything will be cleaned up after validation. Of course you can write your own test code, or even take advantage of deprecated methods. Finally, in order to make this program work, you should provide your own ssh private key.
 
 ## Running this module manually
 
@@ -40,7 +40,7 @@ This folder includes four files. Essentially, [ssh_http/terraform_ssh_http_examp
 
 1. Direct to folder [ssh_http](/composite/ssh_http) and make sure all packages are installed, such as executing `go get github.com/gruntwork-io/terratest/modules/terraform`, etc.
 
-1. Run `go test -args username path/to/your/private/key -timeout timelimit`. For example, `go test -args azureuser id_rsa -timeout 20m`.
+1. Run `go test -timeout timelimit -args username path/to/your/private/key`. For example, `go test -timeout 20m -args azureuser id_rsa`. Be aware that `-timeout` is set to 10 minutes by default and can be omitted, but it should be defined before `-args`.
 
 ## Reference
 
