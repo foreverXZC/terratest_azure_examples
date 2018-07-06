@@ -70,7 +70,7 @@ func testSSHToPublicHost(t *testing.T, terraformOptions *terraform.Options, addr
 	}
 	keyPair := ssh.KeyPair{PrivateKey: string(buffer)}
 
-	// We're going to try to SSH to the virtual machine, using our local key pair and specific username,
+	// We're going to try to SSH to the virtual machine, using our local key pair and specific username
 	publicHost := ssh.Host{
 		Hostname:    publicIP,
 		SshKeyPair:  &keyPair,
