@@ -10,6 +10,34 @@ Because webapp module is not verified and has some problems currently, we use co
 
 The test code here is relatively simple. First, it uses specific resources to deploy a template web application on azure. After that, it gets the web app URL and tries to make http request to see whether the application runs properly. Finally, everything will be cleaned up after validation. This example only sends a request and does not do anything else. For a more complex one, see composite example.
 
+## Running this module manually
+
+1. Sign up for [Azure](https://portal.azure.com/).
+
+1. Configure your Azure credentials. For instance, you may use [Azure CLI](https://docs.microsoft.com/en-us/cli/azure/install-azure-cli) and execute `az login`.
+
+1. Install [Terraform](https://www.terraform.io/) and make sure it's on your `PATH`.
+
+1. Direct to folder [webapp](/webapp/webapp) and run `terraform init`.
+
+1. Run `terraform apply`.
+
+1. When you're done, run `terraform destroy`.
+
+## Running automated tests against this module
+
+1. Sign up for [Azure](https://portal.azure.com/).
+
+1. Configure your Azure credentials. For instance, you may use [Azure CLI](https://docs.microsoft.com/en-us/cli/azure/install-azure-cli) and execute `az login`.
+
+1. Install [Terraform](https://www.terraform.io/) and make sure it's on your `PATH`.
+
+1. Install [Golang](https://golang.org/) and make sure this code is checked out into your `GOPATH`.
+
+1. Direct to folder [http](/webapp/http) and make sure all packages are installed, such as executing `go get github.com/gruntwork-io/terratest/modules/terraform`, etc.
+
+1. Run `go test`.
+
 ## Reference
 
 [Terraform Azure Webapp Module](https://registry.terraform.io/modules/rahulkhengare/webapp/azurerm/)
