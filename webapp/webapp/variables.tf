@@ -1,5 +1,6 @@
 variable "name" {
     description = "The name of the web app"
+    default     = "terratest"
 }
 
 variable "resource_group_name" {
