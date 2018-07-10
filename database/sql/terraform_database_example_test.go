@@ -1,84 +1,70 @@
 package test
 
 import (
-	"database/sql"
 	"fmt"
 	"testing"
 	"time"
 
-	_ "github.com/denisenkom/go-mssqldb"
 	"github.com/gruntwork-io/terratest/modules/retry"
 	"github.com/gruntwork-io/terratest/modules/terraform"
-	"github.com/stretchr/testify/assert"
 )
 
 func TestTerraformHttpExample(t *testing.T) {
 	t.Parallel()
 
 	terraformOptions := &terraform.Options{
-		TerraformDir: "../../clouddrive/database",
+		// The path to where our Terraform code is located
+		TerraformDir: "../database",
 
+		// Variables to pass to our Terraform code using -var options
 		Vars: map[string]interface{}{},
 	}
 
+	// At the end of the test, run `terraform destroy` to clean up any resources that were created
 	defer terraform.Destroy(t, terraformOptions)
 
+	// This will run `terraform init` and `terraform apply` and fail the test if there are any errors
 	terraform.InitAndApply(t, terraformOptions)
 
-	server := terraform.Output(t, terraformOptions, "sql_server_fqdn")
-	port := "1433"
-	user := "azureuser"
-	password := "P@ssw0rd12345!"
-	database := terraform.Output(t, terraformOptions, "database_name")
+	// Setting database configuration, including server name, user name, password and database name
+	var dbConfig DBConfig
+	dbConfig.server = terraform.Output(t, terraformOptions, "sql_server_fqdn")
+	dbConfig.user = terraform.Output(t, terraformOptions, "sql_admin_username")
+	dbConfig.password = terraform.Output(t, terraformOptions, "sql_password")
+	dbConfig.database = terraform.Output(t, terraformOptions, "database_name")
 
+	// It can take a minute or so for the database to boot up, so retry a few times
 	maxRetries := 15
 	timeBetweenRetries := 5 * time.Second
-	description := fmt.Sprintf("Executing commands on database %s", server)
+	description := fmt.Sprintf("Executing commands on database %s", dbConfig.server)
 
+	// Verify that we can connect to the database and run SQL commands
 	retry.DoWithRetry(t, description, maxRetries, timeBetweenRetries, func() (string, error) {
-		config := fmt.Sprintf("server = %s; port = %s; user id = %s; password = %s; database = %s", server, port, user, password, database)
-		db, err := sql.Open("mssql", config)
+		// Connect to specific database, i.e. Microsoft SQL Database
+		db, err := dbConnectionE(t, "mssql", dbConfig)
 		if err != nil {
 			return "", err
 		}
 
-		_, err0 := db.Exec("create table person (id integer, name varchar(30), primary key (id))")
-		if err0 != nil {
-			return "", err0
-		}
+		// Create a table
+		creation := "create table person (id integer, name varchar(30), primary key (id))"
+		dbExecution(t, db, creation)
 
+		// Insert a row
 		expectedID := 12345
 		expectedName := "azure"
 		insertion := fmt.Sprintf("insert into person values (%d, '%s')", expectedID, expectedName)
-		_, err1 := db.Exec(insertion)
-		if err1 != nil {
-			return "", err1
-		}
+		dbExecution(t, db, insertion)
 
-		rows, err2 := db.Query("select * from person")
-		if err2 != nil {
-			return "", err2
-		}
+		// Query the table and check the output
+		query := "select name from person"
+		dbQueryWithValidation(t, db, query, "azure")
 
-		var id int
-		var name string
-		for rows.Next() {
-			err3 := rows.Scan(&id, &name)
-			if err3 != nil {
-				return "", err3
-			}
-			fmt.Println(id, name)
-			assert.Equal(t, expectedID, id)
-			assert.Equal(t, expectedName, name)
-		}
-
-		_, err4 := db.Exec("drop table person")
-		if err4 != nil {
-			return "", err4
-		}
+		// Drop the table
+		drop := "drop table person"
+		dbExecution(t, db, drop)
 		fmt.Println("Executed SQL commands correctly")
 
-		defer rows.Close()
 		defer db.Close()
 
 		return "", nil
