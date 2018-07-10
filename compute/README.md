@@ -4,7 +4,7 @@ Use terraform azure module "compute" to deploy one or more virtual machines on a
 
 ## Compute
 
-These terraform files enable users to deploy one or more virtual machines on azure, as well as virtual network. To use these files, you should provide path to ssh public key file in [compute/terraform.tfvars](/terratest/compute/terraform.tfvars). You can just test the infrastructure code manually without terratest.
+These terraform files enable users to deploy one or more virtual machines on azure, as well as virtual network. To use these files, you should provide path to ssh public key file in [compute/terraform.tfvars](/compute/compute/terraform.tfvars). You can just test the infrastructure code manually without terratest.
 
 ## SSH
 
@@ -18,9 +18,9 @@ This folder includes three files, but two of them are not used. Most importantly
 
 1. Install [Terraform](https://www.terraform.io/) and make sure it's on your `PATH`.
 
-1. Fill in blank of your ssh public key in [compute/terraform.tfvars](/terratest/compute/terraform.tfvars) and make sure your configuration is correct.
+1. Fill in blank of your ssh public key in [compute/terraform.tfvars](/compute/compute/terraform.tfvars) and make sure your configuration is correct.
 
-1. Direct to folder [compute](/terratest/compute) and run `terraform init`.
+1. Direct to folder [compute](/compute/compute) and run `terraform init`.
 
 1. Run `terraform apply`.
 
@@ -36,9 +36,9 @@ This folder includes three files, but two of them are not used. Most importantly
 
 1. Install [Golang](https://golang.org/) and make sure this code is checked out into your `GOPATH`.
 
-1. Fill in blank of your ssh public key in [compute/terraform.tfvars](/terratest/compute/terraform.tfvars) and make sure your configuration is correct.
+1. Fill in blank of your ssh public key in [compute/terraform.tfvars](/compute/compute/terraform.tfvars) and make sure your configuration is correct.
 
-1. Direct to folder [ssh](/terratest/ssh) and make sure all packages are installed, such as executing `go get github.com/gruntwork-io/terratest/modules/terraform`, etc.
+1. Direct to folder [ssh](/compute/ssh) and make sure all packages are installed, such as executing `go get github.com/gruntwork-io/terratest/modules/terraform`, etc.
 
 1. Run `go test -timeout timelimit -args username path/to/your/private/key`. For example, `go test -timeout 20m -args azureuser id_rsa`. Be aware that `-timeout` is set to 10 minutes by default and can be omitted, but it should be defined before `-args`.
 

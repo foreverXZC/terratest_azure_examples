@@ -8,7 +8,7 @@ These terraform files enable users to deploy a Microsoft SQL Dababase on azure. 
 
 ## SQL
 
-This folder only includes one file. First, the go test file uses terraform database module to deploy a database on azure. After that, it tries to connect to the database and execute several SQL commands to check whether the infrastructure runs correctly. Eventually, everything will be cleaned up after validation. You can write your own test code, for instance, to create an independent SQL file and use it in test code.
+This folder only includes one file. First, the go test file uses terraform database module to deploy a database on azure. After that, it tries to connect to the database and execute several SQL commands to check whether the infrastructure runs correctly. Eventually, everything will be cleaned up after validation. You can write your own test code, for instance, to create an independent SQL file and use it when executing SQL commands.
 
 ## Running this module manually
 
