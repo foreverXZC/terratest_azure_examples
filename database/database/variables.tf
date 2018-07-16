@@ -1,27 +1,27 @@
 variable "resource_group_name" {
-    default = "mssqlResourceGroup"
+  default = "mssqlResourceGroup"
 }
 
 variable "location" {
-    default = "westus2"
+  default = "westus2"
 }
 
 variable "db_name" {
-    default = "mydatabase"
+  default = "mydatabase"
 }
 
 variable "sql_admin_username" {
-    default = "azureuser"
+  default = "azureuser"
 }
 
 variable "sql_password" {
-    default = "P@ssw0rd12345!"
+  default = "P@ssw0rd12345!"
 }
 
 variable "start_ip_address" {
-    default = "0.0.0.0"
+  default = "0.0.0.0"
 }
 
 variable "end_ip_address" {
-    default = "255.255.255.255"
+  default = "255.255.255.255"
 }

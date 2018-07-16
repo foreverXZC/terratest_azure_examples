@@ -8,5 +8,5 @@ output "terraform_state" {
 }
 
 output "ip_address" {
-    value = "${module.linuxservers.public_ip_address}"
+  value = "${module.linuxservers.public_ip_address}"
 }
