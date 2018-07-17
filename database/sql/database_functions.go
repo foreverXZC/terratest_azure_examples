@@ -5,12 +5,16 @@ import (
 	"fmt"
 	"testing"
 
-	// Microsoft SQL Database driver
+	// Microsoft SQL Database Driver
 	_ "github.com/denisenkom/go-mssqldb"
+
+	// PostgreSQL Database Driver
+	_ "github.com/lib/pq"
 )
 
 // DBConfig using server name, user name, password and database name
 type DBConfig struct {
+	host     string
 	server   string
 	user     string
 	password string
@@ -28,7 +32,15 @@ func DBConnection(t *testing.T, dbType string, dbConfig DBConfig) *sql.DB {
 
 // DBConnectionE connects to the database using database configuration and database type, i.e. mssql. Return the database or an error.
 func DBConnectionE(t *testing.T, dbType string, dbConfig DBConfig) (*sql.DB, error) {
-	config := fmt.Sprintf("server = %s; user id = %s; password = %s; database = %s", dbConfig.server, dbConfig.user, dbConfig.password, dbConfig.database)
+	config := ""
+	switch dbType {
+	case "mssql":
+		config = fmt.Sprintf("server = %s; user id = %s; password = %s; database = %s", dbConfig.server, dbConfig.user, dbConfig.password, dbConfig.database)
+	case "postgres":
+		config = fmt.Sprintf("host=%s user=%s@%s password=%s dbname=%s sslmode=require", dbConfig.host, dbConfig.user, dbConfig.server, dbConfig.password, dbConfig.database)
+	default:
+		return nil, DatabaseUnknown{dbType: dbType}
+	}
 	db, err := sql.Open(dbType, config)
 	if err != nil {
 		return nil, err
@@ -112,16 +124,25 @@ func DBQueryWithCustomValidationE(t *testing.T, db *sql.DB, command string, vali
 		return err
 	}
 	if !validateResponse(rows) {
-		return ValidationFunctionFailed{command}
+		return ValidationFunctionFailed{command: command}
 	}
 	return nil
 }
 
-// ValidationFunctionFailed is an error that occurs if the validation fails.
+// ValidationFunctionFailed is an error that occurs if the validation function fails.
 type ValidationFunctionFailed struct {
 	command string
 }
 
 func (err ValidationFunctionFailed) Error() string {
 	return fmt.Sprintf("Validation failed for command: %s.", err.command)
+}
+
+// DatabaseUnknown is an error that occurs if the given database type is unknown or not supported.
+type DatabaseUnknown struct {
+	dbType string
+}
+
+func (err DatabaseUnknown) Error() string {
+	return fmt.Sprintf("Database unknown or not supported: %s.", err.dbType)
 }

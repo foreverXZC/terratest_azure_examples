@@ -14,7 +14,7 @@ Use terraform azure module "database" to deploy a Microsoft SQL Database on azur
 
 ### Webapp
 
-Use resources from terraform azure module "webapp" to deploy a web application on azure. Then use terratest to send http request.
+Use resources from terraform azure module "webapp" to deploy a database on azure, which could be a Microsoft SQL Database or a PostgreSQL Database. Then use terratest to send http request.
 
 ### Composite
 
