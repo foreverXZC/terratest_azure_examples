@@ -1,6 +1,6 @@
 # Database Example
 
-Use terraform azure module "database" to deploy a database on azure, which could be a Microsoft SQL Database or a PostgreSQL Database. Then use terratest to connect to the database.
+Use terraform azure resources or module "database" to deploy a database on azure. Then use terratest to connect to the database.
 
 ## Database
 
@@ -10,9 +10,13 @@ These terraform files enable users to deploy a Microsoft SQL Database on azure. 
 
 These terraform files enable users to deploy a PostgreSQL Database on azure. Because database, server and firewall rules are all indicated in resources, it is possible to connect to the database from local and execute SQL commands. You can just test the infrastructure code manually without terratest.
 
+## Mysql
+
+These terraform files enable users to deploy a MySQL Database on azure. Because database, server and firewall rules are all indicated in resources, it is possible to connect to the database from local and execute SQL commands. You can just test the infrastructure code manually without terratest.
+
 ## SQL
 
-This folder includes two files. First, the go test file uses terraform database module to deploy a database on azure. After that, it calls functions from another file, which tries to connect to the database and execute several SQL commands to check whether the infrastructure runs correctly. Eventually, everything will be cleaned up after validation. You can write your own test code, for instance, to create an independent SQL file and use it when executing SQL commands.
+This folder includes two files. First, the go test file uses terraform database module or resources to deploy a database on azure. After that, it calls functions from another file, which tries to connect to the database and execute several SQL commands to check whether the infrastructure runs correctly. Eventually, everything will be cleaned up after validation. You can write your own test code, for instance, to create an independent SQL file and use it when executing SQL commands.
 
 ## Running this module manually
 

@@ -10,11 +10,11 @@ Use terraform azure module "compute" to deploy one or more virtual machines on a
 
 ### Database
 
-Use terraform azure module "database" to deploy a Microsoft SQL Database on azure. Then use terratest to connect to the database.
+Use terraform azure resources or module "database" to deploy a database on azure. Then use terratest to connect to the database.
 
 ### Webapp
 
-Use resources from terraform azure module "webapp" to deploy a database on azure, which could be a Microsoft SQL Database or a PostgreSQL Database. Then use terratest to send http request.
+Use resources from terraform azure module "webapp" to deploy a web application on azure. Then use terratest to send http request.
 
 ### Composite
 

@@ -14,8 +14,7 @@ func TestTerraformHttpExample(t *testing.T) {
 
 	terraformOptions := &terraform.Options{
 		// The path to where our Terraform code is located
-		// TerraformDir: "../database",
-		TerraformDir: "../postgre",
+		TerraformDir: "../mysql",
 
 		// Variables to pass to our Terraform code using -var options
 		Vars: map[string]interface{}{},
@@ -29,16 +28,11 @@ func TestTerraformHttpExample(t *testing.T) {
 
 	// Setting database configuration, including server name, user name, password and database name
 	var dbConfig DBConfig
-	// dbConfig.host = terraform.Output(t, terraformOptions, "sql_server_fqdn")
-	// dbConfig.server = terraform.Output(t, terraformOptions, "sql_server_fqdn")
-	// dbConfig.user = terraform.Output(t, terraformOptions, "sql_admin_username")
-	// dbConfig.password = terraform.Output(t, terraformOptions, "sql_password")
-	// dbConfig.database = terraform.Output(t, terraformOptions, "database_name")
 	dbConfig.host = terraform.Output(t, terraformOptions, "fqdn")
 	dbConfig.server = terraform.Output(t, terraformOptions, "server_name")
 	dbConfig.user = terraform.Output(t, terraformOptions, "admin_username")
 	dbConfig.password = terraform.Output(t, terraformOptions, "password")
-	dbConfig.database = "postgres"
+	dbConfig.database = terraform.Output(t, terraformOptions, "database_name")
 
 	// It can take a minute or so for the database to boot up, so retry a few times
 	maxRetries := 15
@@ -48,8 +42,7 @@ func TestTerraformHttpExample(t *testing.T) {
 	// Verify that we can connect to the database and run SQL commands
 	retry.DoWithRetry(t, description, maxRetries, timeBetweenRetries, func() (string, error) {
 		// Connect to specific database, i.e. mssql
-		// db, err := DBConnectionE(t, "mssql", dbConfig)
-		db, err := DBConnectionE(t, "postgres", dbConfig)
+		db, err := DBConnectionE(t, "mysql", dbConfig)
 		if err != nil {
 			return "", err
 		}

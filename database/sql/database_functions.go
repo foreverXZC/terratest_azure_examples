@@ -10,6 +10,9 @@ import (
 
 	// PostgreSQL Database Driver
 	_ "github.com/lib/pq"
+
+	// MySQL Database Driver
+	_ "github.com/go-sql-driver/mysql"
 )
 
 // DBConfig using server name, user name, password and database name
@@ -38,6 +41,8 @@ func DBConnectionE(t *testing.T, dbType string, dbConfig DBConfig) (*sql.DB, err
 		config = fmt.Sprintf("server = %s; user id = %s; password = %s; database = %s", dbConfig.server, dbConfig.user, dbConfig.password, dbConfig.database)
 	case "postgres":
 		config = fmt.Sprintf("host=%s user=%s@%s password=%s dbname=%s sslmode=require", dbConfig.host, dbConfig.user, dbConfig.server, dbConfig.password, dbConfig.database)
+	case "mysql":
+		config = fmt.Sprintf("%s@%s:%s@tcp(%s:3306)/%s?allowNativePasswords=true", dbConfig.user, dbConfig.server, dbConfig.password, dbConfig.host, dbConfig.database)
 	default:
 		return nil, DatabaseUnknown{dbType: dbType}
 	}
@@ -144,5 +149,5 @@ type DatabaseUnknown struct {
 }
 
 func (err DatabaseUnknown) Error() string {
-	return fmt.Sprintf("Database unknown or not supported: %s.", err.dbType)
+	return fmt.Sprintf("Database unknown or not supported: %s. We only support mssql, postgres and mysql.", err.dbType)
 }
